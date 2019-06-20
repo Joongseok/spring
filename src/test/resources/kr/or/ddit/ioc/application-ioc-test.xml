@@ -6,7 +6,15 @@
 	<!-- 스프링 컨테이너에서 관리하고자 하는 빈을 등록 -->
 	<!-- boardService 등록, boardService를 등록하기 위해서는 boardDao 필요 -->
 	<bean id="boardDao" class="kr.or.ddit.board.dao.BoardDao"/>
+	
+	<!-- prototype scope boardDao -->
+	<bean id="boardDaoPrototype" class="kr.or.ddit.board.dao.BoardDao" scope="prototype"/>
+	
 	<bean id="boardService" class="kr.or.ddit.board.service.BoardService">
 		<property name="boardDao" ref="boardDao"/>
+	</bean>
+	
+	<bean id="boardServiceConstructor" class="kr.or.ddit.board.service.BoardService">
+		<constructor-arg  ref="boardDao"/>
 	</bean>
 </beans>
