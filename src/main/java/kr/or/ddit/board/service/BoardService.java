@@ -4,6 +4,7 @@ import kr.or.ddit.board.dao.IBoardDao;
 
 public class BoardService implements IBoardService {
 	private IBoardDao boardDao;
+	private String name;
 
 	public BoardService() {}
 	
@@ -23,6 +24,13 @@ public class BoardService implements IBoardService {
 	public String sayHello() {
 		return boardDao.sayHello();
 	}
-	
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

@@ -12,6 +12,7 @@
 	
 	<bean id="boardService" class="kr.or.ddit.board.service.BoardService">
 		<property name="boardDao" ref="boardDao"/>
+		<property name="name" value="brown"/>
 	</bean>
 	
 	<bean id="boardServiceConstructor" class="kr.or.ddit.board.service.BoardService">
