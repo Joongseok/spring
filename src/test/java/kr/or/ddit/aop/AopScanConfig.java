@@ -8,7 +8,7 @@ import org.springframework.context.annotation.FilterType;
 
 @Configuration
 @ComponentScan(basePackages = {"kr.or.ddit"},includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Aspect.class))
-@EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableAspectJAutoProxy
 public class AopScanConfig {
 	
 }

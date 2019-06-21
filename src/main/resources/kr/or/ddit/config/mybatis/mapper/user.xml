@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+
+	<insert id="insertUser" parameterType="userVo">
+		INSERT INTO USERS
+		VALUES
+		(
+			 #{userId}
+			,#{name}
+			,#{alias}
+			,#{pass}
+			,#{addr1}
+			,#{addr2}
+			,#{zipcd}
+			,#{birth, jdbcType=DATE}
+			,#{path, jdbcType=VARCHAR}
+			,#{filename, jdbcType=VARCHAR}
+		)
+	</insert>
+
+	
+
+	<!-- 전체 사용자 리스트 조회 -->
+	<select id="userList" resultType="userVo">
+		SELECT *
+		FROM USERS
+		ORDER BY USERID
+	</select>
+	
+	<!-- 특정 사용자 조회 -->
+	<select id="getUser" resultType="userVo" parameterType="string">
+		SELECT *
+		FROM USERS
+		WHERE USERID = #{userId}
+	</select>
+	
+	<!-- 사용자 페이지 리스트 조회 -->
+	<!-- pageVo int page, int pageSize -->
+<!-- 	<select id="userPagingList" parameterType="pageVo" resultType="userVo"> -->
+<!-- 		<![CDATA[ -->
+<!-- 			SELECT * -->
+<!-- 			FROM -->
+<!-- 				(SELECT A.*, ROWNUM RN -->
+<!-- 				FROM -->
+<!-- 					(SELECT A.* -->
+<!-- 					FROM  USERS A -->
+<!-- 					ORDER BY USERID) A) -->
+<!-- 			WHERE RN >= (#{page} - 1) * #{pageSize} + 1 -->
+<!-- 			AND   RN <=  #{page} * #{pageSize} -->
+<!-- 		]]> -->
+<!-- 	</select> -->
+	
+	<!-- 사용자 전체수 조회 -->
+	<select id="usersCnt" resultType="int">
+		SELECT /*+ INDEX_FSS(users PK_USERS) */ COUNT(*)
+		FROM USERS
+	</select>
+	
+	<delete id="deleteUser" parameterType="string">
+		DELETE USERS
+		WHERE USERID = #{userId}
+	</delete>
+	
+	<update id="updateDateUser" parameterType="userVo" >
+		UPDATE USERS
+		SET  NAME	  = #{name}   	
+			,ALIAS    = #{alias}     
+			,PASS     = #{pass}     			
+			,ADDR1    = #{addr1}    			
+			,ADDR2    = #{addr2}    			
+			,ZIPCD    = #{zipcd}    			
+			,BIRTH    = #{birth, jdbcType=DATE}    			
+			,PATH     = #{path}     			
+			,FILENAME = #{filename} 	
+		WHERE USERID = #{userId}		
+	</update> 
+	
+	<!-- 사용자 비밀번호 암호화 적용 대상 조회 -->
+	<select id="userListForPassEncrypt" resultType="userVo">
+		SELECT *
+		FROM   USERS
+		WHERE  USERID NOT IN('userTest', 'at', 'brown')
+	</select>           			
+	<update id="updateUserEncryptPass" parameterType="userVo">
+		UPDATE USERS
+		SET    PASS   = #{pass}
+		WHERE  USERID = #{userId}
+	</update>
+	                    			
+</mapper>
