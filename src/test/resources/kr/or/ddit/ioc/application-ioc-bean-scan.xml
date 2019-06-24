@@ -5,8 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<context:component-scan base-package="kr.or.ddit"/>
+<!-- 	<context:component-scan base-package="kr.or.ddit"/> -->
 	
+	<bean id="boardDao" class="kr.or.ddit.board.dao.BoardDao" />
+	<bean id="boardService" class="kr.or.ddit.board.service.BoardService" >
+		<property name="name" value="brown"></property>
+	</bean>
 	<!-- 빈의 주입을 처리해준다 : @Resource, @Autowired -->
 	<context:annotation-config/>
 

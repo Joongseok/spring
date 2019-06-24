@@ -8,4 +8,6 @@
 	<bean id="bService" class="kr.or.ddit.board.service.BoardService">
 		<property name="boardDao" ref="bDao"/>
 	</bean>
+	
+	
 </beans>

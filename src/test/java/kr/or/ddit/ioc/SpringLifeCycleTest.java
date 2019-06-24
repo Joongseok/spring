@@ -33,7 +33,7 @@ public class SpringLifeCycleTest {
 		/***Then***/
 		assertEquals("oracle.jdbc.driver.OracleDriver", dbInfo.getDriver());
 		assertEquals("jdbc:oracle:thin:@localhost:1521:xe", dbInfo.getUrl());
-		assertEquals("PC25", dbInfo.getUsername());
+		assertEquals("PC25_TEST", dbInfo.getUsername());
 		assertEquals("java", dbInfo.getPassword());
 	}
 

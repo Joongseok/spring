@@ -8,6 +8,10 @@ public interface IBoardService {
 	IBoardDao getBoardDao();
 
 	String getName();
+
+	void setName(String string);
+
+	void setBoardDao(IBoardDao boardDao);
 	
 	
 }

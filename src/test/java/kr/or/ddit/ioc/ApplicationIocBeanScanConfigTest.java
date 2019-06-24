@@ -1,6 +1,7 @@
 package kr.or.ddit.ioc;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.annotation.Resource;
 
@@ -11,11 +12,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.ddit.board.dao.IBoardDao;
 import kr.or.ddit.board.service.IBoardService;
+import kr.or.ddit.testenv.LogicTestEnv;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ApplicationIocBeanScanConfig.class})
-public class ApplicationIocBeanScanConfigTest {
+public class ApplicationIocBeanScanConfigTest{
 
 	@Resource(name = "boardDao")
 	private IBoardDao boardDao;

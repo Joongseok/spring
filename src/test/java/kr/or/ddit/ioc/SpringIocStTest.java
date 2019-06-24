@@ -11,10 +11,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.ddit.board.dao.IBoardDao;
 import kr.or.ddit.board.service.IBoardService;
+import kr.or.ddit.testenv.LogicTestEnv;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:kr/or/ddit/ioc/application-ioc-st.xml")
-public class SpringIocStTest {
+public class SpringIocStTest extends LogicTestEnv{
 
 	@Resource(name = "bDao")
 	private IBoardDao boardDao;
