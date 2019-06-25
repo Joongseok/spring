@@ -113,4 +113,6 @@ public class LoginControllerTest extends ControllerTestEnv{
 		assertEquals("login/login", viewName);
 	}
 
+	
+	
 }
