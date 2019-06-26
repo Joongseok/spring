@@ -141,7 +141,7 @@ public class UserServiceTest extends LogicTestEnv{
 		int usersCnt = userService.usersCnt();
 
 		/***Then***/
-		assertEquals(125, usersCnt);
+		assertEquals(124, usersCnt);
 
 	}
 	
@@ -155,7 +155,7 @@ public class UserServiceTest extends LogicTestEnv{
 	@Test
 	public void updateDateUserTest() throws ParseException{
 		/***Given***/
-		String userId   = "userTest";
+		String userId   = "userTest2";
 		String name     = "test";
 		String alias    = "test";
 		String pass     = "test";

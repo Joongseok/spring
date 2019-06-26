@@ -74,8 +74,8 @@
 			,ADDR2    = #{addr2}    			
 			,ZIPCD    = #{zipcd}    			
 			,BIRTH    = #{birth, jdbcType=DATE}    			
-			,PATH     = #{path}     			
-			,FILENAME = #{filename} 	
+			,PATH     = #{path,jdbcType=VARCHAR}     			
+			,FILENAME = #{filename,jdbcType=VARCHAR} 	
 		WHERE USERID = #{userId}		
 	</update> 
 	

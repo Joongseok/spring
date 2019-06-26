@@ -4,10 +4,10 @@
 	<ul class="nav nav-sidebar">
 		<li class="active"><a href="#">Main <span class="sr-only">(current)</span></a></li>
 		<li class="active"><a
-			href="${cp}/userList">사용자리스트</a></li>
+			href="${cp}/user/list">사용자리스트</a></li>
 		<li class="active"><a
-			href="${cp}/userPagingList">사용자페이징리스트</a></li>
+			href="${cp}/user/pagingList">사용자페이징리스트</a></li>
 		<li class="active"><a
-			href="${cp}/lprodPagingList">lprod 페이징 리스트</a></li>
+			href="${cp}/lprod/pagingList">lprod 페이징 리스트</a></li>
 	</ul>
 </div>

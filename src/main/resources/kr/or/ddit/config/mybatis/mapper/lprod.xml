@@ -9,23 +9,25 @@
 		ORDER BY
 		LPROD_ID
 	</select>
-	<select id="lprodPagingList" parameterType="pageVo" resultType="lprodVo">
+	<select id="prodPagingList" parameterType="map" resultType="prodVo">
 		<![CDATA[
 			SELECT *
 			FROM
 				(SELECT A.*, ROWNUM RN
 				FROM
 					(SELECT A.*
-					FROM  LPROD A
-					ORDER BY LPROD_ID) A)
+					FROM  prod A
+					WHERE prod_lgu = #{prod_lgu}
+					ORDER BY PROD_id) A)
 			WHERE RN >= (#{page} - 1) * #{pageSize} + 1
 			AND   RN <=  #{page} * #{pageSize}
 		]]>
 	</select>
 	
-	<select id="lprodCnt" resultType="int">
+	<select id="prodCnt" parameterType="String" resultType="int">
 		SELECT COUNT(*)
-		FROM LPROD
+		FROM PROD
+		WHERE prod_lgu = #{prod_lgu}
 	</select>
 	<select id="getLprod" parameterType="string" resultType="lprodVo">
 		SELECT *
@@ -37,5 +39,20 @@
 		SELECT PROD_NAME, PROD_ID
 		FROM   PROD
 		WHERE  PROD_LGU=#{prod_lgu}
+	</select>
+	
+	<select id="prodList" parameterType="String" resultType="prodVo">
+		SELECT *
+		FROM  PROD
+		WHERE PROD_LGU = #{prod_lgu}
+	</select>
+	
+	<select id="getBuyer" parameterType="String" resultType="buyerVo">
+		SELECT   BUYER_ID
+				,BUYER_NAME
+				,BUYER_ADD1
+				,BUYER_ADD2 
+		FROM BUYER
+		WHERE BUYER_ID = #{prod_buyer}
 	</select>
 </mapper>

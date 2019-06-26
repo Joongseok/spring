@@ -133,7 +133,7 @@ public class UserDaoTest extends LogicTestEnv{
 		int usersCnt = userDao.usersCnt();
 
 		/***Then***/
-		assertEquals(125, usersCnt);
+		assertEquals(124, usersCnt);
 
 	}
 	
@@ -147,7 +147,7 @@ public class UserDaoTest extends LogicTestEnv{
 	@Test
 	public void updateDateUserTest() throws ParseException{
 		/***Given***/
-		String userId   = "userTest";
+		String userId   = "userTest2";
 		String name     = "test";
 		String alias    = "test";
 		String pass     = "test";
@@ -168,6 +168,8 @@ public class UserDaoTest extends LogicTestEnv{
 		assertEquals(1, result);
 		
 	}
+	
+	
 
 
 }

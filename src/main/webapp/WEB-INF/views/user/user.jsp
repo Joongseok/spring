@@ -38,13 +38,13 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자 상세</h2>
 
-						<form class="form-horizontal" action="${cp}/userModify" role="form">
-
+						<form class="form-horizontal" action="${cp}/user/modify" role="form">
+							<input type="hidden" id="userId" name="userId" value="${userVo.userId }">
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">사용자
 									사진</label>
 								<div class="col-sm-10">
-									<img src="${cp}/profile?userId=${userVo.userId}"/>
+									<img src="${cp}/user/profile?userId=${userVo.userId}"/>
 								</div>
 							</div>
 							
@@ -97,7 +97,7 @@
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">생년월일</label>
 								<div class="col-sm-10">
-									<label class="control-label">${userVo.birthStr}</label>
+<%-- 									<label class="control-label">${userVo.birthStr}</label> --%>
 									<label class="control-label"> fmt : <fmt:formatDate value="${userVo.birth }" pattern="yyyy-MM-dd"/> </label>
 								</div>
 							</div>
