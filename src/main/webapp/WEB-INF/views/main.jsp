@@ -59,6 +59,9 @@
 								<li>jstl</li>
 								<li>db pooling</li>
 								<li>페이지 모듈화</li>
+								<c:forEach items="${userList }" var="user">
+									<li>${user.name }</li>
+								</c:forEach>
 							</ul>
 						</div>
 					</div>

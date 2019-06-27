@@ -29,6 +29,11 @@
 <script>
 	$(document).ready(function (){
 		//  사용자 tr태그 이벤트 등록
+		$("#excelDown").on("click", function (){
+			$("#frm").attr("action", "${cp}/user/userListExcel");
+			$("#filename").val("userList")
+			$("#frm").submit();
+		})
 		$(".userTr").on("click", function(){
 			console.log("userTr click");
 			
@@ -66,6 +71,7 @@
 						<!-- 사용자 상세 조회 : userId가 필요 -->
 						<form id="frm" action="${cp}/user/user" method="get">
 							<input type="hidden" id="userId" name="userId">
+							<input type="hidden" id="filename" name="filename">
 						
 						</form>
 						
@@ -124,6 +130,11 @@
 									</c:otherwise>
 								</c:choose>
 							</ul>
+							
+							<input id="excelDown" type="button" value="엑셀다운"></input>
+							<c:forEach items="${userList }" var="user">
+								${user }<br>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
