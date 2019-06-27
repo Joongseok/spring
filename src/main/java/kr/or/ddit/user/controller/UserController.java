@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.paging.model.PageVO;
@@ -210,7 +211,7 @@ public class UserController {
 	* Method 설명 : 사용자 수정 응답
 	*/
 	 @RequestMapping(path = "/modify", method = RequestMethod.POST) public
-	 String userModifyProcess(MultipartFile modifyFile, UserVO userVo, Model model) {
+	 String userModifyProcess(MultipartFile modifyFile, UserVO userVo, Model model, RedirectAttributes redirectAttributes) {
 	 logger.debug("userVo : {}", userVo);
 		 userVo.setPass(KISA_SHA256.encrypt(userVo.getPass()));
 		 
@@ -233,7 +234,10 @@ public class UserController {
 		 }
 
 		 if	 (userService.updateDateUser(userVo) == 1) { 
-			 return "redirect:/user/user?userId=" + userVo.getUserId(); 
+			 redirectAttributes.addFlashAttribute("msg", "수정 성공");
+			 redirectAttributes.addFlashAttribute("userId", userVo.getUserId());
+			 
+			 return "redirect:/user/user"; 
 		 }else{ 
 			 model.addAttribute("msg", "회원정보 수정 실패"); 
 			 return "user/modify"; 

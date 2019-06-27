@@ -21,6 +21,14 @@
 <!-- css, js -->
 <%@include file="/WEB-INF/views/common/basicLib.jsp"%>
 
+<script>
+	$(function (){
+		<c:if test="${not empty msg}">
+			alert("${msg}")
+		</c:if>
+	});
+</script>
+
 </head>
 
 <body>

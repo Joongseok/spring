@@ -4,6 +4,8 @@ package kr.or.ddit.main.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.or.ddit.main.model.MainVo;
 import kr.or.ddit.user.model.UserVO;
 
 /*
@@ -121,5 +125,36 @@ public class MainController {
 		logger.debug("Accept : {}", accept);
 		
 		return "main";
+	}
+	
+	
+	@RequestMapping("main/view")
+	public String view() {
+		return "view";
+	}
+	
+	// List<> 타입의 경우 @RequestParam적용
+	@RequestMapping("main/process")
+	public String process(HttpServletRequest request, String[] userId, @RequestParam("userId") List<String> userIdList,@RequestParam("name") List<String> name, MainVo mainVo) {
+		String[] userIdArr = request.getParameterValues("userId");
+		logger.debug("request.getParameterValues(\"userId\")" );
+		for (String u : userIdArr) 
+			logger.debug("userId : {}", u);
+		
+		logger.debug("String[] userId" );
+		for (String u : userId) 
+			logger.debug("userId : {}", u);
+		
+		logger.debug("@RequestParam(\"userId\")List<String> userIdList" );
+		for (String u : userIdList) 
+			logger.debug("userId : {}", u);
+		logger.debug("@RequestParam(\"name\")List<String> name" );
+		for (String u : name) 
+			logger.debug("userId : {}", u);
+		
+		
+		logger.debug("mainVo : {}", mainVo );
+		
+		return "view";
 	}
 }
