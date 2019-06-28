@@ -141,7 +141,7 @@ public class UserServiceTest extends LogicTestEnv{
 		int usersCnt = userService.usersCnt();
 
 		/***Then***/
-		assertEquals(124, usersCnt);
+		assertEquals(125, usersCnt);
 
 	}
 	

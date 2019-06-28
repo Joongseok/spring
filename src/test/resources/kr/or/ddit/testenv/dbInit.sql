@@ -1,11 +1,14 @@
 select * from not_exists_in_prd_db;
 
 --users 테이블 초기화
+delete noti_comment;
+delete notice;
+delete board;
 delete users;
-
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('LJS','이중석','테스트','3ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4','대전 대덕구 갑천도시고속도로 23','415','34305',to_date('19/06/27','RR/MM/DD'),null,null);
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('text','text','at','76592b9de6d38238a52a3651867871e5c670e632a8ef46a84b559f8933f33e','광주 서구 2순환로 2344','ㅁ5','61900',to_date('19/05/21','RR/MM/DD'),null,null);
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('at','text','at','c6347b73d5b1f7c77f8be828ee3e871c819578f23779c7d5e082ae2b36a44',null,null,null,null,null,null);
+Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('userTest','test','test','test','test','test','test',to_date('19/05/31','RR/MM/DD'),'test','test');
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('userTest2','대덕인','중앙로','308caa642ae3f0be8ed54ffbe4ca60642c7d1bc762f9fc6ca26acaf32393925','대전광역시 중구 중앙로76','영민빌딩 2층 대덕인재개발원','34940',to_date('19/05/31','RR/MM/DD'),'a','ryan.png');
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('userTest3','56124124','489','bad9a6f0e28076da5c45d47f5cd8b3c01358faee62d79df5c2a6f65f8e94ab3','서울 강북구 오현로25가길 7','a25','01146',to_date('19/05/16','RR/MM/DD'),'a','moon.png');
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('21512','15125','125125','66c03337b22c301d55a339a94165dc9628491c3dfe01a57ef62e3eab452e898','충북 청주시 청원구 1순환로 42','12512','28322',to_date('19/06/20','RR/MM/DD'),null,null);
@@ -127,5 +130,35 @@ Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('userTest15125215','대덕인','중앙로','308caa642ae3f0be8ed54ffbe4ca60642c7d1bc762f9fc6ca26acaf32393925','대전광역시 중구 중앙로76','영민빌딩 2층 대덕인재개발원','34940',null,null,null);
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('userTest111231312','대덕인','중앙로','308caa642ae3f0be8ed54ffbe4ca60642c7d1bc762f9fc6ca26acaf32393925','대전광역시 중구 중앙로76','영민빌딩 2층 대덕인재개발원','34940',null,null,null);
 Insert into PC25_TEST.USERS (USERID,NAME,ALIAS,PASS,ADDR1,ADDR2,ZIPCD,BIRTH,PATH,FILENAME) values ('1','2고고고고곡a5aw5aw5wa5','1aw5aw5w5','76b5265bb0a3ef6a892cae828ce1872c895ccd70c8f640e0b5d157bc692b2',null,null,null,null,'d:\upload\2019\06\d2977770-820b-409c-994e-7516a38c748c.png','moon.png');
+Insert into PC25_TEST.BOARD values (1,'brown','자유 게시판','true',SYSDATE);
+Insert into PC25_TEST.BOARD values (2,'brown','공지 게시판','true',SYSDATE);
+Insert into PC25_TEST.BOARD values (3,'brown','테스트 게시판','true',SYSDATE);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (1, 'brown', '테스트 제목1', '테스트 내용1', SYSDATE, NULL, 1, 'true', 1);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (2, 'brown', '테스트 제목2', '테스트 내용2', SYSDATE, NULL, 1, 'true', 2);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (3, 'brown', '테스트 제목3', '테스트 내용3', SYSDATE, NULL, 1, 'true', 3);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (4, 'brown', '테스트 제목4', '테스트 내용4', SYSDATE, NULL, 1, 'true', 4);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (5, 'brown', '테스트 제목5', '테스트 내용5', SYSDATE, NULL, 1, 'true', 5);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (6, 'brown', '테스트 제목6', '테스트 내용6', SYSDATE, NULL, 1, 'true', 6);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (7, 'brown', '테스트 제목7', '테스트 내용7', SYSDATE, NULL, 1, 'true', 7);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (8, 'brown', '테스트 제목8', '테스트 내용8', SYSDATE, NULL, 1, 'true', 8);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (9, 'brown', '테스트 제목9', '테스트 내용9', SYSDATE, NULL, 1, 'true', 9);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (10, 'brown', '테스트 제목10', '테스트 내용10', SYSDATE, NULL, 1, 'true', 10);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (11, 'brown', '테스트 제목11', '테스트 내용11', SYSDATE, NULL, 1, 'true', 11);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (12, 'brown', '테스트 제목12', '테스트 내용12', SYSDATE, NULL, 1, 'true', 12);
+Insert into PC25_TEST.NOTICE (NOTIID, USERID, TITLE, CONTENT, REG_DT, PARENTID, ID, DEL_YN, GROUPID) values (13, 'brown', '테스트 제목13', '테스트 내용13', SYSDATE, NULL, 1, 'true', 13);
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (1, 1, '테스트 댓글1', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (2, 2, '테스트 댓글2', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (3, 3, '테스트 댓글3', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (4, 4, '테스트 댓글4', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (5, 5, '테스트 댓글5', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (6, 6, '테스트 댓글6', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (7, 7, '테스트 댓글7', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (8, 8, '테스트 댓글8', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (9, 9, '테스트 댓글9', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (10, 10, '테스트 댓글10', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (11, 11, '테스트 댓글11', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (12, 12, '테스트 댓글12', SYSDATE, 'true', 'brown');
+Insert into PC25_TEST.NOTI_COMMENT (ID, NOTIID, CONTENT, REG_DT, DEL_YN, USERID) values (13, 13, '테스트 댓글13', SYSDATE, 'true', 'brown');
+
 
 commit;

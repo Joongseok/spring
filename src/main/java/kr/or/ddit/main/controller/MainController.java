@@ -75,7 +75,7 @@ public class MainController {
 //		model.addAttribute("userVo", userVo);
 		
 		model.addAttribute("mainUserId", "brown");
-		return "main";
+		return "tiles.main";
 	}
 	
 	/**

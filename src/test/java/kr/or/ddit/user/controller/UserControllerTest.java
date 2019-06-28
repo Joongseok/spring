@@ -39,7 +39,7 @@ public class UserControllerTest extends ControllerTestEnv{
 		 ModelAndView mav = mvcResult.getModelAndView();
 		/***Then***/
 		 assertEquals("user/list", mav.getViewName());
-		 assertEquals(124, ((List<UserVO>)mav.getModelMap().get("userList")).size());
+		 assertEquals(125, ((List<UserVO>)mav.getModelMap().get("userList")).size());
 		 
 	}
 	
@@ -65,7 +65,7 @@ public class UserControllerTest extends ControllerTestEnv{
 		 String viewName = mav.getViewName();
 		 
 		/***Then***/
-		 assertEquals("user/pageList", viewName);
+		 assertEquals("tiles.pageList", viewName);
 		 assertEquals(10, userList.size());
 		 assertEquals(13, paginationSize);
 		 
@@ -128,7 +128,7 @@ public class UserControllerTest extends ControllerTestEnv{
 		MockMultipartFile file = new MockMultipartFile("profile", f.getName(), "", new FileInputStream(f));
 		/***When***/
 		mockMvc.perform(fileUpload("/user/form").file(file)
-						.param("userId", "userTest")
+						.param("userId", "userTest45674")
 						.param("name", "대덕인")
 						.param("alias", "중앙로")
 						.param("addr1", "대전광역시 중구 중앙로 76")
@@ -220,7 +220,7 @@ public class UserControllerTest extends ControllerTestEnv{
 				.param("zipcd", "34940")
 				.param("birth", "2019-05-31")
 				.param("pass", "userTest1234"))
-		.andExpect(view().name("redirect:/user/user?userId=brown" ));
+		.andExpect(view().name("redirect:/user/user" ));
 	}
 	
 }

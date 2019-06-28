@@ -88,7 +88,7 @@ public class UserController {
 		model.addAttribute("paginationSize", paginationSize);
 		model.addAttribute("pageVo", pageVo);
 		
-		return "user/pageList";
+		return "tiles.pageList";
 	}
 	
 	@RequestMapping("/profile") 

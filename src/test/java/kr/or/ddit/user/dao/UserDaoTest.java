@@ -133,7 +133,7 @@ public class UserDaoTest extends LogicTestEnv{
 		int usersCnt = userDao.usersCnt();
 
 		/***Then***/
-		assertEquals(124, usersCnt);
+		assertEquals(125, usersCnt);
 
 	}
 	
