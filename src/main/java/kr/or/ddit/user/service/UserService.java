@@ -60,6 +60,7 @@ public class UserService implements IUserService {
 		
 		resultMap.put("userList", userList); // 10
 		resultMap.put("usersCnt", usersCnt); // 105
+//		resultMap.put("pageVo", pageVo); // 105
 		
 		int paginationSize = (int) Math.ceil((double)usersCnt/pageVo.getPageSize()); // 105/10
 		resultMap.put("paginationSize", paginationSize);

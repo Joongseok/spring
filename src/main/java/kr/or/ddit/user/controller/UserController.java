@@ -91,6 +91,41 @@ public class UserController {
 		return "tiles.pageList";
 	}
 	
+	/**
+	 * Method : userPagingList
+	 * 작성자 : PC25
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 사용자 페이징 리스트 ajax처리
+	 */
+	@RequestMapping("/pagingListAjax")
+	public String pagingListAjax(Model model, PageVO pageVo) {
+		
+		model.addAttribute("data", userService.userPagingList(pageVo));
+		
+		return "jsonView";
+	}
+	
+	/**
+	 * Method : userPagingList
+	 * 작성자 : PC25
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 사용자 페이징 리스트 ajax처리
+	 */
+	@RequestMapping("/pagingListAjaxHtml")
+	public String pagingListAjaxHtml(Model model, PageVO pageVo) {
+		
+		model.addAttribute("data", userService.userPagingList(pageVo));
+		
+		return "user/pagingListAjaxHtml";
+	}
+	
+	@RequestMapping("/pagingListAjaxView")
+	public String pagingListAjaxView() {
+		return "tiles.pagingListAjaxView";
+	}
+	
 	@RequestMapping("/profile") 
 	public String profile(String userId, Model model) { 
 		UserVO userVo = userService.getUser(userId);
