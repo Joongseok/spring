@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
@@ -19,6 +21,7 @@ import kr.or.ddit.user.service.IUserService;
 @Controller
 public class AjaxController {
 
+	private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
 	@Resource(name = "userService")
 	private IUserService userService;
 	/**
@@ -38,14 +41,12 @@ public class AjaxController {
 	public String requestData(Model model) {
 		
 		model.addAttribute("pageVo", new PageVO(5, 10));
-		model.addAttribute("pageVo2", new PageVO(2, 10));
-		
-		List<String> rangers = new ArrayList<String>();
-		rangers.add("brown");
-		rangers.add("sally");
-		rangers.add("cony");
-		
-		model.addAttribute("rangers", rangers);
+//		model.addAttribute("pageVo2", new PageVO(2, 10));
+//		List<String> rangers = new ArrayList<String>();
+//		rangers.add("brown");
+//		rangers.add("sally");
+//		rangers.add("cony");
+//		model.addAttribute("rangers", rangers);
 		
 		return "jsonView";
 	}
@@ -63,4 +64,23 @@ public class AjaxController {
 		model.addAttribute("userVo", userVo);
 		return "user/userHtml";
 	}
+	
+	@RequestMapping("/requestDataResponseBody")
+	@ResponseBody // 응답 내용을 responseBody에 작성
+	public PageVO requestDataResponseBody() {
+		return new PageVO(5, 10);
+	}
+	
+	@RequestMapping(path = "/requestBody", consumes = "application/json" // consumes : content-type 재현
+			, produces = {"application/json", "application/xml"}) // produces : 메소드가 생성 가능한 타입
+	@ResponseBody
+	public UserVO requestBody(@RequestBody UserVO userVo) {
+		logger.debug("userVo : {}", userVo);
+		userVo.setUserId(userVo.getUserId() + "_MODIFY");
+		userVo.setPass(userVo.getPass() + "_MODIFY");
+		
+		return userVo;
+	}
+	
+	
 }
