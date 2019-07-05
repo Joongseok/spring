@@ -4,17 +4,16 @@ import static org.junit.Assert.assertEquals;
 
 import javax.annotation.Resource;
 
+import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.ddit.board.dao.IBoardDao;
 import kr.or.ddit.board.service.IBoardService;
 import kr.or.ddit.testenv.LogicTestEnv;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:kr/or/ddit/ioc/application-ioc-st.xml")
+@ContextConfiguration(locations = {"classpath:kr/or/ddit/ioc/application-ioc-st.xml"})
 public class SpringIocStTest extends LogicTestEnv{
 
 	@Resource(name = "bDao")
@@ -29,7 +28,7 @@ public class SpringIocStTest extends LogicTestEnv{
 	* 변경이력 :
 	* Method 설명 :boardService 객체의 boardDao 속성과 spring 컨테이너로부터 받은 boardDao가 같은 객체인지 확인 
 	*/
-	@Test
+	@Test@Ignore
 	public void springIocStTest() {
 		/***Given***/
 

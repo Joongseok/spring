@@ -7,13 +7,14 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ddit.lprod.dao.ILprodDao;
 import kr.or.ddit.lprod.model.BuyerVO;
 import kr.or.ddit.lprod.model.LprodVO;
 import kr.or.ddit.lprod.model.ProdVO;
 import kr.or.ddit.paging.model.PageVO;
-
+@Transactional
 @Service
 public class LprodService implements ILprodService {
 

@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.core.io.ClassPathResource;
@@ -13,10 +14,15 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kr.or.ddit.config.spring.ApplicationDatasource;
+import kr.or.ddit.config.spring.ApplicationTransaction;
+import kr.or.ddit.config.spring.RootContext;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:kr/or/ddit/config/spring/application-datasource-dev.xml"
-						, "classpath:kr/or/ddit/config/spring/application-transaction.xml"
-						, "classpath:kr/or/ddit/config/spring/root-context.xml"})
+//@ContextConfiguration({"classpath:kr/or/ddit/config/spring/application-datasource-dev.xml"
+//						, "classpath:kr/or/ddit/config/spring/application-transaction.xml"
+//						, "classpath:kr/or/ddit/config/spring/root-context.xml"})
+@ContextConfiguration(classes = {RootContext.class, ApplicationDatasource.class, ApplicationTransaction.class})
 public class LogicTestEnv {
 	
 	@Resource(name = "datasource")
@@ -28,6 +34,6 @@ public class LogicTestEnv {
 		rdp.addScript(new ClassPathResource("kr/or/ddit/testenv/dbInit.sql"));
 		DatabasePopulatorUtils.execute(rdp, datasource);
 	}
-	@Test
+	@Test @Ignore
 	public void dummy() {}
 }

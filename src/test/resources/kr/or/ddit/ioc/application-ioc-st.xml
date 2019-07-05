@@ -9,5 +9,4 @@
 		<property name="boardDao" ref="bDao"/>
 	</bean>
 	
-	
 </beans>

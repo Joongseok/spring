@@ -3,9 +3,11 @@ package kr.or.ddit.board.service;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ddit.board.dao.IBoardDao;
 
+@Transactional
 @Service
 public class BoardService implements IBoardService {
 	
