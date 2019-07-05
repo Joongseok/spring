@@ -33,7 +33,7 @@ public class LoginController {
 		if (session.getAttribute("USER_INFO") == null) 
 			return "login/login";
 		else
-			return "main";
+			return "tiles.main";
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class LoginController {
 			
 			session.setAttribute("USER_INFO", userVo);
 			
-			return "main";
+			return "tiles.main";
 			
 		}else { 
 			return "login/login";
