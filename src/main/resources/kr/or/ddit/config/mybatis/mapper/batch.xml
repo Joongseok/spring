@@ -22,4 +22,48 @@
 				VALUES(#{pid}, #{cid}, #{dt}, #{cnt})
 			
 	</insert>
+	
+	<delete id="deleteDaily" parameterType="String">
+		DELETE 
+		FROM DAILY
+		WHERE DT LIKE #{ym} || '%'
+	</delete>
+	
+	<insert id="createDaily" parameterType="String">
+		<![CDATA[
+			INSERT INTO DAILY
+			SELECT CYCLE.CID, CYCLE.PID, CAL.DT, CYCLE.CNT
+			 FROM CYCLE,
+			    (SELECT TO_CHAR(TO_DATE(#{ym}, 'YYYYMM') + (LEVEL-1) , 'YYYYMMDD') DT,
+			            TO_CHAR(TO_DATE(#{ym}, 'YYYYMM') + (LEVEL-1) , 'D') DAY
+			     FROM DUAL
+			    CONNECT BY LEVEL <= LAST_DAY(TO_DATE(#{ym}, 'YYYYMM')) - TO_DATE(#{ym}, 'YYYYMM') +1) CAL
+			WHERE CYCLE.DAY = CAL.DAY
+			ORDER BY CID, PID, CAL.DT
+		]]>
+	</insert>
+	
+	<insert id="insertBatch" parameterType="batchVo">
+		<selectKey keyColumn="bid" keyProperty="bid" resultType="int" order="BEFORE">
+			SELECT SEQ_BATCH.NEXTVAL bid 
+			 FROM DUAL
+		</selectKey>
+		INSERT INTO BATCH 
+		VALUES 
+		(
+			 #{bid}
+			,#{bcd}
+			,#{st}
+			,SYSDATE
+			,NULL
+		)
+	</insert>
+	
+	<update id="updateBatch" parameterType="batchVo">
+		UPDATE BATCH
+		SET  ST 	= #{st}
+			,ED_DT  = SYSDATE
+		WHERE BID 	= #{bid}	
+	</update>
+	
 </mapper>
