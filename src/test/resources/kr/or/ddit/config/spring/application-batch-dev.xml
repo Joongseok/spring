@@ -2,30 +2,49 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<bean class="org.springframework.batch.test.JobLauncherTestUtils"/>	
 	
-	
-	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"/>
+	<batch:job-repository
+		id="jobRepository"
+		data-source="datasource"
+		transaction-manager="transactionManager"
+		isolation-level-for-create="DEFAULT"
+	/>
+	<context:property-placeholder location="classpath:kr/or/ddit/config/mybatis/db_dev.properties"/>
 	
 	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
 		<property name="jobRepository" ref="jobRepository"></property>
 	</bean>
-	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"></bean>
 	
-	<bean id="rangerItemReader" class="kr.or.ddit.batch.RangerItemReader"/>
-	<bean id="rangerItemProcessor" class="kr.or.ddit.batch.RangerItemProcessor"/>
-	<bean id="rangerItemWriter" class="kr.or.ddit.batch.RangerItemWriter"/>
+	<bean id="yogultItemReader" class="org.mybatis.spring.batch.MyBatisCursorItemReader">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="queryId" value="batch.getCycleList"/>
+<!-- 		<property name="parameterValues"> -->
+<!-- 			<map> -->
+<!-- 				<entry key="ym" value="#{jobParameters[ym]}"/> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
+	</bean>
+	
+	<bean id="yogultItemProcessor" class="kr.or.ddit.batch.YogultItemProcessor" scope="step"/>
+	
+	<bean id="yogultItemWriter" class="kr.or.ddit.batch.MyBatisCustomWriter">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="statementId" value="batch.mergeDaily"></property>
+	</bean>
 
-	<batch:job id="rangerJob">
-		<batch:step id="step1">
-			<batch:tasklet>
+	<batch:job id="yogultJob">
+		<batch:step id="step1" allow-start-if-complete="true">
+			<batch:tasklet allow-start-if-complete="true">
 				<batch:chunk commit-interval="1" 
-							reader="rangerItemReader"
-							processor="rangerItemProcessor"
-							writer="rangerItemWriter"
+							reader="yogultItemReader"
+							processor="yogultItemProcessor"
+							writer="yogultItemWriter"
 							>
 				</batch:chunk>
 			</batch:tasklet>

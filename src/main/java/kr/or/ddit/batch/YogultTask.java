@@ -12,18 +12,17 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 
-public class RangerTask {
-	private static final Logger logger = LoggerFactory.getLogger(RangerTask.class);
+public class YogultTask {
+	private static final Logger logger = LoggerFactory.getLogger(YogultTask.class);
 	
 	@Resource(name = "jobLauncher")
 	private JobLauncher jobLauncher;
 	
-	@Resource(name = "rangerJob")
-	private Job rangerJob;
+	@Resource(name = "yogultJob")
+	private Job yogultJob;
 	
-	public void rangerTask() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-		jobLauncher.run(rangerJob, new JobParameters());
-		logger.debug("==================================rangerTask==================================");
+	public void yogultTask() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+		logger.debug("==================================yogultTask==================================");
+		jobLauncher.run(yogultJob, new JobParameters());
 	}
-	
 }
